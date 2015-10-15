@@ -6,17 +6,19 @@
 #    By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/25 10:38:16 by rdestreb          #+#    #+#              #
-#    Updated: 2015/04/27 12:18:02 by rdestreb         ###   ########.fr        #
+#    Updated: 2015/10/15 12:33:01 by rdestreb         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = ft_minishell
+NAME = ft_minishell1
 SRCDIR = ./src
 HEADDIR = ./
 HEAD = ft_minishell.h
 HEADFILES = $(addprefix $(HEADDIR)/, $(HEAD))
 SCRFILES = $(addprefix $(SRCDIR)/, $(SRC))
 SRC =	main.c \
+		list.c \
+		env.c \
 
 OBJS = $(SCRFILES:.c=.o)
 CC = clang
