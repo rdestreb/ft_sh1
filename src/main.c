@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/15 18:33:49 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/16 11:22:00 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 void	print_error(char *msg)
 {
-	ft_putstr_fd("ft_sh1 : Error : ", 2);
+	ft_putstr_fd("\033[31mft_sh1 : Error : ", 2);
 	ft_putstr_fd(msg, 2);
 	exit(2);
 }
@@ -50,31 +50,50 @@ pid_t	new_process(void)
 
 void	exec_me(char *cmd)
 {
-//	t_env	*sh_env;
 	char	**entry;
 	char	**tab_env;
 	char	**tab_path;
 	t_env	*path;
 	int		i;
-//	sh_env = singleton();
+
 	entry = ft_strsplit(cmd, ' ');
-//	printf("%s\n", cmd);
 	tab_env = disp_env();
 	path = get_env_var("PATH");
 	tab_path = ft_strsplit(path->val, ':');
-//	if (ft_strstr(entry[0], "ls"))
 	i = -1;
 	while (tab_path[++i])
-		execve(ft_strjoin(ft_strjoin(tab_path[i],"/"), entry[0]), entry, tab_env);
-	print_error(ft_strjoin(cmd, " command not found\n"));
-	free(tab_env);
+	{
+		tab_path[i] = ft_strjoin(ft_strjoin(tab_path[i], "/"), entry[0]);
+		execve(tab_path[i], entry, tab_env);
+	}
+	if (!launch_builtin(entry, tab_env))
+//		free(tab_env);
+		print_error(ft_strjoin(cmd, " command not found\n"));
+}
+
+void	enter_shell(void)
+{
+	pid_t	proc1;
+	char	*line;
+
+	while (666)
+	{
+		disp_prompt();
+		if (!(get_next_line(0, &line)))
+		{
+			ft_putendl("exit");
+			exit(0);
+		}
+		proc1 = new_process();
+		if (proc1 > 0)
+			wait(0);
+		else
+			exec_me(line);
+	}
 }
 
 int		main(int ac, char **av, char **env)
 {
-	pid_t	proc1;
-//	pid_t	proc2;
-	char	*line;
 
 	(void)av;
 	if (ac == 1)
@@ -82,59 +101,7 @@ int		main(int ac, char **av, char **env)
 		copy_env(env);
 //		disp_env();
 //		signal(SIGQUIT, SIG_DFL);
-		while (666)
-		{
-			disp_prompt();
-			if (!(get_next_line(0, &line)))
-			{
-				ft_putendl("exit");
-				exit(0);
-			}
-			proc1 = new_process();
-			if (proc1 > 0)
-				wait(0);
-			else
-				exec_me(line);
-/*			if (ft_strstr(line, "ls"))
-			{
-				proc1 = new_process();
-				if (proc1 > 0)
-					wait(0);
-				else
-					execve("/bin/ls", &line, env);
-			}
-			else
-				ft_putendl(line);
-		}
-^^	if (ac > 0)
-	{
-		proc1 = new_process();
-		if (proc1 > 0)
-		{
-			wait(0);
-			printf("ID1 : %d\n", proc1);
-			execve("/bin/ls", av, env);
-		}
-		if (proc1 == 0)
-		{
-			proc2 = new_process();
-			if (proc2 > 0)
-			{
-				wait(0);
-				printf("ID1 : %d\n", proc1);
-				printf("ID2 : %d\n", proc2);
-				execve("/bin/pwd", av, env);
-			}
-			if (proc2 == 0)
-			{
-				printf("ID1 : %d\n", proc1);
-				printf("ID2 : %d\n", proc2);
-				ft_putendl("Hello");
-			}
-		}
-	}
-*/
-		}
+		enter_shell();
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/15 12:33:29 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/15 17:35:45 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/16 11:18:42 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,6 @@ char	**disp_env(void)
 	while (sh_env)
 	{
 		tab_env[++i] = ft_strjoin(ft_strjoin(sh_env->var, "="), sh_env->val);
-//		ft_putstr(sh_env->var);
-//		ft_putstr("=");
-//		ft_putendl(sh_env->val);
 		sh_env = sh_env->next;
 	}
 	return (tab_env);
