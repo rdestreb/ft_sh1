@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:27 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/16 12:54:36 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/20 12:57:08 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ t_env	*newnode(char *var, char *val);
 t_env	*add_link(char *var, char *val);
 t_env	*get_env_var(char *var);
 int		list_size(void);
-int		launch_builtin(char **entry, char **tab_env);
+int		launch_builtin(char **entry);
 void	built_setenv(char **entry);
-void    built_env(char **tab_env);
+void    built_env(void);
 
 #endif
