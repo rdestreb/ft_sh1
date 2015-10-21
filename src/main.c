@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/20 13:01:14 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/21 14:52:27 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	exec_me(char **entry)
 		tab_path[i] = ft_strjoin(ft_strjoin(tab_path[i], "/"), entry[0]);
 		execve(tab_path[i], entry, tab_env);
 	}
-//	if (!launch_builtin(entry, tab_env))
 //		free(tab_env);
 	print_error(ft_strjoin(entry[0], " command not found\n"));
 }
@@ -83,14 +82,17 @@ void	enter_shell(void)
 			ft_putendl("exit");
 			exit(0);
 		}
-		entry = ft_strsplit(line, ' ');
-		if (!launch_builtin(entry))
+		if (*line)
 		{
-			proc1 = new_process();
-			if (proc1 > 0)
-				wait(0);
-			else
-				exec_me(entry);
+			entry = ft_strsplit(line, ' ');
+			if (entry && *entry && !launch_builtin(entry))
+			{
+				proc1 = new_process();
+				if (proc1 > 0)
+					wait(0);
+				else
+					exec_me(entry);
+			}
 		}
 	}
 }

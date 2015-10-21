@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 11:03:02 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/15 17:28:56 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/21 15:35:45 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,30 @@ t_env	*add_link(char *var, char *val)
 		new = new->next;
 	new->next = newnode(var, val);
 	return (singleton());
+}
+
+void	suppr_link(char *var)
+{
+	t_env	*tmp;
+	t_env	*lst;
+
+	lst = singleton();
+	while (lst->next && lst->next->next)
+	{
+		if (!ft_strcmp(lst->next->var, var))
+		{
+			tmp = lst->next->next;
+			free(lst->next);
+			lst->next = tmp;
+		}
+		else
+			lst = lst->next;
+	}
+	if (!ft_strcmp(lst->next->var, var))
+	{
+		free(lst->next);
+		lst->next = NULL;
+	}
 }
 
 int		list_size(void)
