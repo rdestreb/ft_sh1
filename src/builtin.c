@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/16 11:19:00 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/21 15:38:15 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/21 16:11:56 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,10 @@ int		launch_builtin(char **entry)
 	else if (!ft_strcmp(entry[0], "cd"))
 		;
 	else if (!ft_strcmp(entry[0], "exit"))
-		;
+	{
+		ft_putendl("exit");
+		exit(0);
+	}
 	else
 		return (0);
 	return (1);
