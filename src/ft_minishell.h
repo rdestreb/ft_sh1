@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:27 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/21 15:16:30 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/23 09:07:27 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int		launch_builtin(char **entry);
 void	built_setenv(char **entry);
 void	built_env(void);
 void	built_unsetenv(char **entry);
+void	built_cd(char **entry);
 
 #endif

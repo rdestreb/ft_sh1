@@ -6,7 +6,7 @@
 #    By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/25 10:38:16 by rdestreb          #+#    #+#              #
-#    Updated: 2015/10/16 11:22:26 by rdestreb         ###   ########.fr        #
+#    Updated: 2015/10/23 09:07:02 by rdestreb         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -20,6 +20,7 @@ SRC =	main.c \
 		list.c \
 		env.c \
 		builtin.c \
+		cd.c \
 
 OBJS = $(SCRFILES:.c=.o)
 CC = clang
