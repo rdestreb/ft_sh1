@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/23 13:08:17 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/23 16:26:29 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,19 @@ void	exec_me(char **entry)
 	print_error(ft_strjoin(entry[0], " command not found\n"));
 }
 
+char	*str_clean(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+	{
+		if (str[i] == '\t')
+			str[i] = ' ';
+	}
+	return (str);
+}
+
 void	enter_shell(void)
 {
 	pid_t	proc1;
@@ -84,7 +97,7 @@ void	enter_shell(void)
 		}
 		if (*line)
 		{
-			entry = ft_strsplit(line, ' ');
+			entry = ft_strsplit(str_clean(line), ' ');
 			if (entry && *entry && !launch_builtin(entry))
 			{
 				proc1 = new_process();
