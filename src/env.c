@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/15 12:33:29 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/16 11:18:42 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/23 11:01:41 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,4 +58,18 @@ t_env	*get_env_var(char *var)
 		get = get->next;
 	}
 	return (NULL);
+}
+
+void	chg_env_var(char *var, char *new_val)
+{
+	t_env	*env_line;
+
+	if (!(env_line = get_env_var(var)))
+		return ;
+	if (ft_strcmp(env_line->val, ""))
+		free(env_line->val);
+	if (new_val)
+		env_line->val = ft_strdup(new_val);
+	else
+		env_line->val = ft_strdup("");
 }

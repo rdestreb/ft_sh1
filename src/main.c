@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/21 14:52:27 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/23 12:09:37 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	disp_prompt(void)
 	pwd = get_env_var("PWD");
 	if (!home || !pwd)
 		disp = ft_strdup(" ");
-	else if (!(ft_strnequ(pwd->val, home->val, ft_strlen(home->val))))
+	else if (!(ft_strstr(pwd->val, home->val)))
 		disp = pwd->val;
 	else
-		disp = ft_strjoin("~", &pwd->val[ft_strlen(home->val)]);
+		disp = ft_strjoin("~", ft_strstr(pwd->val, home->val) + ft_strlen(home->val));
 	ft_putstr("\033[36;1m[\033[00m\033[1;37m");
 	ft_putstr(disp);
 	ft_putstr("\033[00m\033[36;1m]> \033[00m");
-	free(disp);
+//	free(disp);
 }
 
 pid_t	new_process(void)
