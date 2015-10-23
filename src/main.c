@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/23 12:09:37 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/23 13:08:17 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	disp_prompt(void)
 
 	home = get_env_var("HOME");
 	pwd = get_env_var("PWD");
-	if (!home || !pwd)
+	if (!pwd)
 		disp = ft_strdup(" ");
-	else if (!(ft_strstr(pwd->val, home->val)))
+	else if (!home || !(ft_strstr(pwd->val, home->val)))
 		disp = pwd->val;
 	else
 		disp = ft_strjoin("~", ft_strstr(pwd->val, home->val) + ft_strlen(home->val));
