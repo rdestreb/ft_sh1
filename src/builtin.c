@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/16 11:19:00 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 12:53:07 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 16:00:32 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,9 @@ static void	built_exit(char **entry)
 
 int			launch_builtin(char **entry)
 {
-	if (!ft_strcmp(entry[0], "env") ||
+	if (!ft_strcmp(entry[0], "~"))
+		built_cd(entry);
+	else if (!ft_strcmp(entry[0], "env") ||
 		(!ft_strcmp(entry[0], "setenv") && !entry[1]))
 		built_env();
 	else if (entry[1] && !ft_strcmp(entry[0], "setenv"))
