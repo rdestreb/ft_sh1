@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/26 11:16:54 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 11:17:05 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 12:12:29 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,9 @@ void	exec_me(char **entry)
 	int		i;
 
 	tab_env = disp_env();
-	if (!access(entry[0], F_OK) && !access(entry[0], X_OK))
+	if (!access(entry[0], F_OK) && access(entry[0], X_OK))
+		print_error(ft_strjoin(entry[0], " Permission denied !\n"));
+	else if (!access(entry[0], F_OK) && !access(entry[0], X_OK))
 		execve(entry[0], entry, tab_env);
 	path = get_env_var("PATH");
 	tab_path = ft_strsplit(path->val, ':');
