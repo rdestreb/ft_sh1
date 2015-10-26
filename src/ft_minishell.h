@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:27 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/23 17:22:48 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 14:10:11 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+typedef struct stat		t_stat;
 typedef struct s_env	t_env;
 
 struct	s_env

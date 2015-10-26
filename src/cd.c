@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 08:56:33 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 11:40:11 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 14:58:12 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,26 @@ static char	*get_path(char **entry)
 	return (entry[1]);
 }
 
+static void	verif_cd(char *path)
+{
+	t_stat	*p_stat;
+
+	if (!(p_stat = (t_stat *)ft_memalloc(sizeof(t_stat))))
+		return ;
+	if (path)
+		stat(path, p_stat);
+	if ((!path || !ft_strcmp(path, "~")) && !get_env_var("HOME"))
+		return (ft_putendl("\033[33menv. var. HOME missing !\033[0m"));
+	else if (path && !ft_strcmp(path, "-") && !get_env_var("OLDPWD"))
+		return (ft_putendl("\033[33menv. var. OLDPWD missing !\033[0m"));
+	else if (!access(path, F_OK) && !S_ISDIR(p_stat->st_mode))
+		return (ft_putendl("\033[33mNot a Directory !\033[0m"));
+	else if (!access(path, F_OK) && access(path, X_OK))
+		return (ft_putendl("\033[33mPermission denied !\033[0m"));
+	else if (chdir(path) == -1)
+		return (ft_putendl("\033[33mNo Such Directory !\033[0m"));
+}
+
 void		built_cd(char **entry)
 {
 	char	*path;
@@ -41,10 +61,7 @@ void		built_cd(char **entry)
 
 	path = get_path(entry);
 	pwd = getcwd(NULL, 0);
-	if (!access(path, F_OK) && access(path, X_OK))
-		return (ft_putendl("\033[33mPermission denied !\033[0m"));
-	if (chdir(path) == -1)
-		return (ft_putendl("\033[33mNo Such Directory !\033[0m"));
+	verif_cd(path);
 	if (!get_env_var("PWD"))
 		add_link("PWD", getcwd(NULL, 0));
 	else

@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/26 11:16:54 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 12:12:29 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 15:15:47 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	exec_me(char **entry)
 	else if (!access(entry[0], F_OK) && !access(entry[0], X_OK))
 		execve(entry[0], entry, tab_env);
 	path = get_env_var("PATH");
+	if (!path)
+		print_error("env. var. PATH missing !\n");
 	tab_path = ft_strsplit(path->val, ':');
 	i = -1;
 	while (tab_path[++i])

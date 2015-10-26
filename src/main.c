@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 10:49:51 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 15:11:03 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	rec_signal(int sig)
 		disp_prompt();
 	}
 	if (sig == SIGSEGV)
-		print_error("Segmentation Fault !");
+		print_error("Segmentation Fault !\n");
 	if (sig == SIGTERM)
 		ft_putstr_fd("\n", 2);
 }
