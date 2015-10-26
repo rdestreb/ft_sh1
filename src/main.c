@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 09:21:18 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 10:35:52 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	exec_me(char **entry)
 	int		i;
 
 	tab_env = disp_env();
+	if (!access(entry[0], F_OK) && !access(entry[0], X_OK))
+		execve(entry[0], entry, tab_env);
 	path = get_env_var("PATH");
 	tab_path = ft_strsplit(path->val, ':');
 	i = -1;
