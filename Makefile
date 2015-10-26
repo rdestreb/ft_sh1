@@ -6,7 +6,7 @@
 #    By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/25 10:38:16 by rdestreb          #+#    #+#              #
-#    Updated: 2015/10/23 09:07:02 by rdestreb         ###   ########.fr        #
+#    Updated: 2015/10/26 11:34:10 by rdestreb         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
@@ -17,6 +17,10 @@ HEAD = ft_minishell.h
 HEADFILES = $(addprefix $(HEADDIR)/, $(HEAD))
 SCRFILES = $(addprefix $(SRCDIR)/, $(SRC))
 SRC =	main.c \
+		print_error.c \
+		shell.c \
+		prompt.c \
+		exec.c \
 		list.c \
 		env.c \
 		builtin.c \

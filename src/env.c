@@ -32,7 +32,7 @@ char	**disp_env(void)
 	char	**tab_env;
 	int		i;
 
-	if(!(tab_env = (char **)ft_memalloc(sizeof(char *) * (list_size() + 1))))
+	if (!(tab_env = (char **)ft_memalloc(sizeof(char *) * (list_size() + 1))))
 		return (NULL);
 	sh_env = singleton();
 	sh_env = sh_env->next;

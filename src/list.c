@@ -21,7 +21,7 @@ t_env	*singleton(void)
 	return (lst);
 }
 
-t_env  *newnode(char *var, char *val)
+t_env	*newnode(char *var, char *val)
 {
 	t_env *new;
 

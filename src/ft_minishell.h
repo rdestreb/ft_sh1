@@ -32,9 +32,11 @@ struct	s_env
 	t_env	*next;
 };
 
-
 void	print_error(char *msg);
 void	copy_env(char **env);
+void	enter_shell(void);
+void	disp_prompt(void);
+void	exec_me(char **entry);
 char	**disp_env(void);
 t_env	*singleton(void);
 t_env	*newnode(char *var, char *val);
@@ -44,9 +46,6 @@ void	chg_env_var(char *var, char *new_val);
 void	suppr_link(char *var);
 int		list_size(void);
 int		launch_builtin(char **entry);
-void	built_setenv(char **entry);
-void	built_env(void);
-void	built_unsetenv(char **entry);
 void	built_cd(char **entry);
 
 #endif

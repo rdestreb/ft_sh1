@@ -12,7 +12,7 @@
 
 #include "ft_minishell.h"
 
-void	built_env(void)
+static void	built_env(void)
 {
 	t_env	*lst;
 
@@ -27,7 +27,7 @@ void	built_env(void)
 	}
 }
 
-void	built_setenv(char **entry)
+static void	built_setenv(char **entry)
 {
 	t_env	*env_line;
 
@@ -47,7 +47,7 @@ void	built_setenv(char **entry)
 	}
 }
 
-void	built_unsetenv(char **entry)
+static void	built_unsetenv(char **entry)
 {
 	t_env	*env_line;
 
@@ -61,10 +61,8 @@ void	built_unsetenv(char **entry)
 	}
 }
 
-
-int		launch_builtin(char **entry)
+int			launch_builtin(char **entry)
 {
-
 	if (!ft_strcmp(entry[0], "env") ||
 		(!ft_strcmp(entry[0], "setenv") && !entry[1]))
 		built_env();
