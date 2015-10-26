@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:15 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/23 16:26:29 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 09:21:18 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,32 @@ char	*str_clean(char *str)
 	return (str);
 }
 
+void	get_cmd(char *line)
+{
+	char	**many_cmd;
+	char	**entry;
+	pid_t	proc1;
+	int		i;
+
+	many_cmd = ft_strsplit(str_clean(line), ';');
+	i = -1;
+	while (many_cmd[++i])
+	{
+		entry = ft_strsplit(many_cmd[i], ' ');
+		if (entry && *entry && !launch_builtin(entry))
+		{
+			proc1 = new_process();
+			if (proc1 > 0)
+				wait(0);
+			else
+				exec_me(entry);
+		}
+	}
+}
+
 void	enter_shell(void)
 {
-	pid_t	proc1;
 	char	*line;
-	char	**entry;
 
 	while (666)
 	{
@@ -96,18 +117,26 @@ void	enter_shell(void)
 			exit(0);
 		}
 		if (*line)
-		{
-			entry = ft_strsplit(str_clean(line), ' ');
-			if (entry && *entry && !launch_builtin(entry))
-			{
-				proc1 = new_process();
-				if (proc1 > 0)
-					wait(0);
-				else
-					exec_me(entry);
-			}
-		}
+			get_cmd(line);
 	}
+}
+
+void	rec_signal(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putstr_fd("\n", 2);
+		disp_prompt();
+	}
+	if (sig == SIGQUIT)
+	{
+		ft_putstr_fd("\n", 2);
+		disp_prompt();
+	}
+	if (sig == SIGSEGV)
+		print_error("Segmentation Fault !");
+	if (sig == SIGTERM)
+		ft_putstr_fd("\n", 2);
 }
 
 int		main(int ac, char **av, char **env)
@@ -117,8 +146,10 @@ int		main(int ac, char **av, char **env)
 	if (ac == 1)
 	{
 		copy_env(env);
-//		disp_env();
-//		signal(SIGQUIT, SIG_DFL);
+		signal(SIGINT, rec_signal);
+		signal(SIGQUIT, rec_signal);
+		signal(SIGSEGV, rec_signal);
+		signal(SIGTERM, rec_signal);
 		enter_shell();
 	}
 	return (0);

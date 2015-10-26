@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 08:56:33 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/23 17:11:30 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/26 09:28:31 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void		built_cd(char **entry)
 	pwd = getcwd(NULL, 0);
 	if (!access(path, F_OK) && access(path, X_OK))
 		return (ft_putendl("\033[33mPermission denied !\033[0m"));
-	if (chdir(NULL) == -1)
+	if (chdir(path) == -1)
 		return (ft_putendl("\033[33mNo Such Directory !\033[0m"));
 	if (!get_env_var("PWD"))
 		add_link("PWD", getcwd(NULL, 0));
