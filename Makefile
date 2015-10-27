@@ -20,10 +20,15 @@ SRC =	main.c \
 		print_error.c \
 		shell.c \
 		prompt.c \
+		new_process.c \
 		exec.c \
 		list.c \
 		env.c \
 		builtin.c \
+		built_env.c \
+		built_setenv.c \
+		built_unsetenv.c \
+		built_exit.c \
 		cd.c \
 
 OBJS = $(SCRFILES:.c=.o)

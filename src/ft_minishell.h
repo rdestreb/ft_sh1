@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:27 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 14:10:11 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/27 11:21:02 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,10 @@ void	suppr_link(char *var);
 int		list_size(void);
 int		launch_builtin(char **entry);
 void	built_cd(char **entry);
+void	built_env(char **entry);
+void	built_setenv(char **entry);
+void	built_unsetenv(char **entry);
+void	built_exit(char **entry);
+void	new_process(char **entry);
 
 #endif
