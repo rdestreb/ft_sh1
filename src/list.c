@@ -27,7 +27,10 @@ t_env	*newnode(char *var, char *val)
 
 	new = ft_memalloc(sizeof(t_env));
 	new->var = ft_strdup(var);
-	new->val = ft_strdup(val);
+	if (!val)
+	  new->val = ft_strdup("");
+	else
+	  new->val = ft_strdup(val);
 	new->next = NULL;
 	return (new);
 }

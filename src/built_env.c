@@ -62,6 +62,7 @@ void		built_env(char **entry)
 	else if (entry[1] && entry[2] && !ft_strcmp(entry[1], "-i") &&
 			!access(entry[2], X_OK))
 	{
+	  ft_putstr("COUCOU");
 		proc = fork();
 		if (proc > 0)
 			wait(0);
