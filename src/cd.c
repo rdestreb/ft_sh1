@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 08:56:33 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/27 12:26:04 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/27 13:06:45 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,8 @@ static void	verif_cd(char *path)
 		return ;
 	if (path)
 		stat(path, p_stat);
-	if ((!path || !ft_strcmp(path, "~")) && !get_env_var("HOME"))
+	if ((!path || !ft_strcmp(path, "--") || !ft_strcmp(path, "~"))
+		&& !get_env_var("HOME"))
 		return (ft_putendl("\033[33menv. var. HOME missing !\033[0m"));
 	else if (path && !ft_strcmp(path, "-") && !get_env_var("OLDPWD"))
 		return (ft_putendl("\033[33menv. var. OLDPWD missing !\033[0m"));
