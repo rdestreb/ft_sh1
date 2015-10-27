@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/23 08:56:33 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 14:58:12 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/27 12:26:04 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static char	*get_path(char **entry)
 {
 	t_env	*env_line;
 
-	if (!entry[1])
+	if (!entry[1] || !ft_strcmp(entry[1], "--"))
 	{
 		if ((env_line = get_env_var("HOME")))
 			return (env_line->val);
