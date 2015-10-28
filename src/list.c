@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/29 11:03:02 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/27 10:08:20 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/28 09:30:24 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,9 +28,9 @@ t_env	*newnode(char *var, char *val)
 	new = ft_memalloc(sizeof(t_env));
 	new->var = ft_strdup(var);
 	if (!val)
-	  new->val = ft_strdup("");
+		new->val = ft_strdup("");
 	else
-	  new->val = ft_strdup(val);
+		new->val = ft_strdup(val);
 	new->next = NULL;
 	return (new);
 }

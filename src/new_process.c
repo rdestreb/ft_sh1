@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 11:53:21 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/27 11:53:22 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/28 08:52:06 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ void	new_process(char **entry)
 	if (proc_id > 0)
 		wait(0);
 	else
-		exec_me(entry);
+		exec_me(entry, TRUE);
 }

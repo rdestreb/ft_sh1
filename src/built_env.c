@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/27 11:40:41 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/27 11:40:43 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/28 09:06:21 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,16 @@ void		built_env(char **entry)
 		print_env();
 	else if (entry[1] && ft_strchr(entry[1], '='))
 		built_env2(entry);
-	else if (entry[1] && entry[2] && !ft_strcmp(entry[1], "-i") &&
-			!access(entry[2], X_OK))
+	else if (entry[1] && !ft_strcmp(entry[1], "-i"))
 	{
-	  ft_putstr("COUCOU");
-		proc = fork();
-		if (proc > 0)
-			wait(0);
-		else
-			execve(entry[2], &entry[2], NULL);
+		if (entry[2])
+		{
+			proc = fork();
+			if (proc > 0)
+				wait(0);
+			else
+				exec_me(&entry[2], FALSE);
+		}
 	}
 	else
 		new_process(&entry[1]);

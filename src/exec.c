@@ -6,7 +6,7 @@
 /*   By: rdestreb <rdestreb@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/10/26 11:16:54 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/26 15:52:35 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/28 09:27:53 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,21 @@ void	replace_home(char **entry)
 	}
 }
 
-void	exec_me(char **entry)
+void	exec_me(char **entry, int bool)
 {
 	char	**tab_env;
 	char	**tab_path;
 	t_env	*path;
 	int		i;
 
-	tab_env = disp_env();
+	tab_env = (!bool ? NULL : disp_env());
 	replace_home(entry);
 	if (!access(entry[0], F_OK) && access(entry[0], X_OK))
 		print_error(ft_strjoin(entry[0], " Permission denied !\n"));
 	else if (!access(entry[0], F_OK) && !access(entry[0], X_OK))
 		execve(entry[0], entry, tab_env);
 	path = get_env_var("PATH");
-	if (!path)
+	if (!path || !ft_strcmp(path->val, "") || !tab_env)
 		print_error("env. var. PATH missing !\n");
 	tab_path = ft_strsplit(path->val, ':');
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/04/27 12:21:27 by rdestreb          #+#    #+#             */
-/*   Updated: 2015/10/27 11:21:02 by rdestreb         ###   ########.fr       */
+/*   Updated: 2015/10/28 09:06:48 by rdestreb         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@
 # include <signal.h>
 # include "../libft/libft.h"
 
+# define TRUE 1
+# define FALSE 0
+
 typedef struct stat		t_stat;
 typedef struct s_env	t_env;
 
@@ -37,7 +40,7 @@ void	print_error(char *msg);
 void	copy_env(char **env);
 void	enter_shell(void);
 void	disp_prompt(void);
-void	exec_me(char **entry);
+void	exec_me(char **entry, int bool);
 char	**disp_env(void);
 t_env	*singleton(void);
 t_env	*newnode(char *var, char *val);
