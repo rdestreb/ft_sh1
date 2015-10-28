@@ -6,11 +6,11 @@
 #    By: rdestreb <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2014/11/25 10:38:16 by rdestreb          #+#    #+#              #
-#    Updated: 2015/10/26 11:34:10 by rdestreb         ###   ########.fr        #
+#    Updated: 2015/10/28 09:47:49 by rdestreb         ###   ########.fr        #
 #                                                                              #
 #******************************************************************************#
 
-NAME = ft_minishell1
+NAME = ft_minishell
 SRCDIR = ./src
 HEADDIR = ./
 HEAD = ft_minishell.h
